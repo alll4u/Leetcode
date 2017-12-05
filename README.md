@@ -1,7 +1,7 @@
 ## I have already began do practice on leetcode
 > You can do projects at the same time do some algorithm on leetcode。 -- Bingo
 
- Just to record and inspire myself to boost no t strengthen(A meme from Gwent)!
+ Just to record and inspire myself to boost not to strengthen(A meme from Gwent)!
 
 | # | Title | Solution | Difficulty | Finish Time |
 |---| ----- | -------- | ---------- | ----------- |
