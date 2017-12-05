@@ -39,14 +39,23 @@ public:
 
     //46. Permutations
     vector<vector<int>> permute(vector<int>& nums) {
-         vector<vector<int>> result;
-         vector<int> line;
-         int cycle_times=1;
-         for(int i=nums.size();i>0;i--)
-             cycle_times*=i;
-         for(int i=0;i<cycle_times;i++){
-             line.push_back(nums[i]);
-         }
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> results;
+        vector<int> vec_list;
+        backtrack_p(results, vec_list, nums);
+        return results;
+    }
+    void backtrack_p(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums){
+        if(vec_list.size()==nums.size())
+            vec.push_back(vec_list);
+        for(int i=0;i<nums.size();i++){
+            if(find(vec_list.begin(), vec_list.end(), nums[i])==vec_list.end())
+            {
+                vec_list.push_back(nums[i]);
+                backtrack_p(vec, vec_list, nums);
+                vec_list.pop_back();
+            }
+        }
     }
 };
 
@@ -61,9 +70,10 @@ int main(int argc, char *argv[])
         }
         cout << endl;
     }
-    vector<int> nums = {1,2,2,2};
+    cout << "solution start" << endl;
+    vector<int> nums = {1,2,3};
     vector<vector<int>> b;
-    b=solution.subsets(nums);
+    b=solution.permute(nums);
     for(auto ele:b){
         for(auto e:ele){
             cout << e;
@@ -72,4 +82,4 @@ int main(int argc, char *argv[])
     }
     cout << "Hello World!" << endl;
     return 0;
-}
+ }
