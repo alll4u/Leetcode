@@ -48,7 +48,6 @@ public:
     void backtrack_p(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums){
         if(vec_list.size()==nums.size())
             vec.push_back(vec_list);
-<<<<<<< HEAD
         else{
             for(int i=0;i<nums.size();i++){
                 if(find(vec_list.begin(), vec_list.end(), nums[i])==vec_list.end())
@@ -80,15 +79,6 @@ public:
             backtrack_p2(vec, vec_list, nums, used);
             used[i] = false;
             vec_list.pop_back();
-=======
-        for(int i=0;i<nums.size();i++){
-            if(find(vec_list.begin(), vec_list.end(), nums[i])==vec_list.end())
-            {
-                vec_list.push_back(nums[i]);
-                backtrack_p(vec, vec_list, nums);
-                vec_list.pop_back();
-            }
->>>>>>> fc6c4674cf788487c8508a3ecda6464163786783
         }
     }
 };
@@ -96,7 +86,6 @@ public:
 int main(int argc, char *argv[])
 {
     Solution solution;
-<<<<<<< HEAD
 //    vector<vector<int>> a = {{1,2,3},{4,5,6},{7,8,9}};
 //    solution.rotate(a);
 //    for(auto ele:a){
@@ -109,19 +98,6 @@ int main(int argc, char *argv[])
     vector<int> nums = {1,1,2};
     vector<vector<int>> b;
     b=solution.permuteUnique(nums);
-=======
-    solution.rotate(a);
-    for(auto ele:a){
-        for(auto e:ele){
-            cout << e;
-        }
-        cout << endl;
-    }
-    cout << "solution start" << endl;
-    vector<int> nums = {1,2,3};
-    vector<vector<int>> b;
-    b=solution.permute(nums);
->>>>>>> fc6c4674cf788487c8508a3ecda6464163786783
     for(auto ele:b){
         for(auto e:ele){
             cout << e;
