@@ -10,5 +10,5 @@
 |90 |[Subsets II](https://leetcode.com/problems/subsets-ii/)|C++|Medium|2017-12-05 16:40|
 |46 |[Permutations](https://leetcode.com/problems/permutations/)|C++|Medium|2017-12-05 22:00|
 |47 |[Permutations II](https://leetcode.com/problems/permutations-ii/)|C++|Medium|2017-12-06 11:49|
-|39 |[Combination Sum](https://leetcode.com/problems/combination-sum/)C++|Medium|2017-12-06 15:41|
+|39 |[Combination Sum](https://leetcode.com/problems/combination-sum/)|C++|Medium|2017-12-06 15:41|
 |40 |[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|C++|Medium|2017-12-06 15:41|

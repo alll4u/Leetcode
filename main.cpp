@@ -1,3 +1,9 @@
+/*********************************************************
+ *  @brief: : Leetcode practice
+ *  @author : Jeffrey Yin
+ *  @github : alll4u
+ *  @date   : 2017-12-06
+**********************************************************/
 #include <iostream>
 #include <vector>
 #include <algorithm>
