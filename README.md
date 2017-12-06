@@ -9,3 +9,4 @@
 |78 |[Subsets](https://leetcode.com/problems/subsets/)|C++|Medium|2017-12-05 15:30-16:13|
 |90 |[Subsets II](https://leetcode.com/problems/subsets-ii/)|C++|Medium|2017-12-05 16:40|
 |46 |[Permutations](https://leetcode.com/problems/permutations/)|C++|Medium|2017-12-05 22:00|
+|47 |[Permutations]()|C++|Medium|2017-12-06 11:49|
