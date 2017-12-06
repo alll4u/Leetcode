@@ -57,6 +57,16 @@ public:
             }
         }
     }
+    //47. Permutations II
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> results;
+        int *used = new int [nums.size()];
+        backtrack_p2(results, vec_list, nums, used);
+    }
+    void backtrack_p2(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums, int[] a){
+
+    }
 };
 
 int main(int argc, char *argv[])
