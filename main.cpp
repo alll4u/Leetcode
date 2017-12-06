@@ -81,6 +81,52 @@ public:
             vec_list.pop_back();
         }
     }
+    //39. Combination Sum
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> results;
+        vector<int> vec_list;
+        backtrack_c(results, vec_list, candidates, 0, target);
+        return results;
+    }
+    void backtrack_c(vector<vector<int>>& vec, vector<int>& vec_list, vector<int>& nums, int start, int target){
+        if(target<0)
+            return;
+        else if(target==0){
+            vec.push_back(vec_list);
+        }
+        else{
+            for(int i=start;i<nums.size();i++){
+                vec_list.push_back(nums[i]);
+                backtrack_c(vec, vec_list, nums, i, target-nums[i]);
+                vec_list.pop_back();
+            }
+        }
+    }
+    //40. Combination Sum II
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> results;
+        vector<int> vec_list;
+        backtrack_c2(results, vec_list, candidates, 0, target);
+        return results;
+    }
+    void backtrack_c2(vector<vector<int>>& vec, vector<int>& vec_list, vector<int>& nums, int start, int target){
+        if(target<0)
+            return;
+        else if(target==0){
+            vec.push_back(vec_list);
+        }
+        else{
+            for(int i=start;i<nums.size();i++){
+                if(i>start && nums[i]==nums[i-1]) continue;
+                vec_list.push_back(nums[i]);
+                backtrack_c2(vec, vec_list, nums, i+1, target-nums[i]);
+                vec_list.pop_back();
+            }
+        }
+    }
+
 };
 
 int main(int argc, char *argv[])
@@ -95,12 +141,12 @@ int main(int argc, char *argv[])
 //        cout << endl;
 //    }
 //    cout << "solution start" << endl;
-    vector<int> nums = {1,1,2};
+    vector<int> nums = {1,2,2,5};
     vector<vector<int>> b;
-    b=solution.permuteUnique(nums);
+    b=solution.combinationSum2(nums,8);
     for(auto ele:b){
         for(auto e:ele){
-            cout << e;
+            cout << e << " ";
         }
         cout << endl;
     }
