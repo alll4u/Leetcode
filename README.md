@@ -12,4 +12,4 @@
 |47 |[Permutations II](https://leetcode.com/problems/permutations-ii/)|C++|Medium|2017-12-06 11:49|
 |39 |[Combination Sum](https://leetcode.com/problems/combination-sum/)|C++|Medium|2017-12-06 15:41|
 |40 |[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|C++|Medium|2017-12-06 15:41|
-|131|[Paliundrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/discuss/)|C++|Medium|2017-12-06|
+|131|[Paliundrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/discuss/)|C++|Medium|2017-12-06 23:28|
