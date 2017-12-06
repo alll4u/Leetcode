@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <set>
 using namespace std;
 class Solution{
 public:
@@ -126,6 +127,57 @@ public:
             }
         }
     }
+    //131. Palindrome Partitioning
+    vector<string> partition(string s) {
+        vector<string> results;
+        string temp;
+        backtrack_pli(results, s, temp, 0);
+        return results;
+
+    }
+    void backtrack_pli(vector<string>& vec, string s, string temp, int left){
+        vec.push_back(temp);
+        for(int i=left;i<s.size();i++){
+            if(is_plindrome(temp+s.substr(left))){
+                temp = temp+s.substr(i-left);
+                backtrack_pli(vec, s, temp, i+1);
+                temp.pop_back();
+            }
+        }
+
+
+
+    };
+    bool is_plindrome(string s){
+        bool is_ = true;
+
+        for(int i=0;i<s.size()/2;i++){
+            if(s[i]!=s[s.size()-1-i])
+                is_ = false;
+        }
+        return is_;
+    }
+    bool is_plindrome_substr(string s, int start, int length){
+        bool is_ = true;
+        string s_copy = s.substr(start, length);
+
+        for(int i=0;i<s_copy.size()/2;i++){
+            if(s_copy[i]!=s_copy[s_copy.size()-1-i])
+                is_ = false;
+        }
+        return is_;
+    }
+    vector<string> substring(string s){
+        vector<string> results;
+        set
+        for(int i=0;i<s.size();i++){
+            for(int j=i;j<s.size();j++){
+                if(is_plindrome(s.substr(i, j-i+1)))
+                    results.push_back(s.substr(i, j-i+1));
+            }
+        }
+        return results;
+    }
 
 };
 
@@ -151,5 +203,11 @@ int main(int argc, char *argv[])
         cout << endl;
     }
     cout << "Hello World!" << endl;
+    string s = "abba";
+    vector<string> s2;
+    s2 = solution.substring(s);
+    for(auto ele:s2){
+        cout << ele << endl;
+    }
     return 0;
  }
