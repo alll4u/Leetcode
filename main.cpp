@@ -48,12 +48,14 @@ public:
     void backtrack_p(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums){
         if(vec_list.size()==nums.size())
             vec.push_back(vec_list);
-        for(int i=0;i<nums.size();i++){
-            if(find(vec_list.begin(), vec_list.end(), nums[i])==vec_list.end())
-            {
-                vec_list.push_back(nums[i]);
-                backtrack_p(vec, vec_list, nums);
-                vec_list.pop_back();
+        else{
+            for(int i=0;i<nums.size();i++){
+                if(find(vec_list.begin(), vec_list.end(), nums[i])==vec_list.end())
+                {
+                    vec_list.push_back(nums[i]);
+                    backtrack_p(vec, vec_list, nums);
+                    vec_list.pop_back();
+                }
             }
         }
     }
@@ -61,29 +63,41 @@ public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         sort(nums.begin(), nums.end());
         vector<vector<int>> results;
-        int *used = new int [nums.size()];
+        vector<int> vec_list;
+        vector<bool> used(nums.size(), false);
         backtrack_p2(results, vec_list, nums, used);
+        return results;
     }
-    void backtrack_p2(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums, int[] a){
-
+    void backtrack_p2(vector<vector<int>> &vec, vector<int>& vec_list, vector<int>& nums, vector<bool>& used){
+        if(vec_list.size()==nums.size()){
+            vec.push_back(vec_list);
+        }
+        for(int i=0;i<nums.size();i++){
+            if(used[i] || i>0 && nums[i]==nums[i-1] && !used[i-1]) continue;
+            used[i] = true;
+            vec_list.push_back(nums[i]);
+            backtrack_p2(vec, vec_list, nums, used);
+            used[i] = false;
+            vec_list.pop_back();
+        }
     }
 };
 
 int main(int argc, char *argv[])
 {
-    vector<vector<int>> a = {{1,2,3},{4,5,6},{7,8,9}};
     Solution solution;
-    solution.rotate(a);
-    for(auto ele:a){
-        for(auto e:ele){
-            cout << e;
-        }
-        cout << endl;
-    }
-    cout << "solution start" << endl;
-    vector<int> nums = {1,2,3};
+//    vector<vector<int>> a = {{1,2,3},{4,5,6},{7,8,9}};
+//    solution.rotate(a);
+//    for(auto ele:a){
+//        for(auto e:ele){
+//            cout << e;
+//        }
+//        cout << endl;
+//    }
+//    cout << "solution start" << endl;
+    vector<int> nums = {1,1,2};
     vector<vector<int>> b;
-    b=solution.permute(nums);
+    b=solution.permuteUnique(nums);
     for(auto ele:b){
         for(auto e:ele){
             cout << e;
