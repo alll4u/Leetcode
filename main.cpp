@@ -8,6 +8,8 @@
 #include <vector>
 #include <algorithm>
 #include <set>
+#include <map>
+#include <test.h>
 using namespace std;
 class Solution{
 public:
@@ -189,39 +191,46 @@ public:
             results.push_back(ele);
         return results;
     }
+    /*********************************************************
+     *  @function : groupAnagrams
+     *  @brief    : string problems
+     *  @input    : yep
+     *  @output   : yep
+    **********************************************************/
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        map<string, vector<string>> m_results;
+        for(auto str : strs){
+            vector<char> copy_str(str.size());
+            string temp_str;
+            copy(str.begin(), str.end(), copy_str.begin());
+            sort(copy_str.begin(), copy_str.end());
+            temp_str.assign(copy_str.begin(), copy_str.end());
+            if(!m_results.count(temp_str))
+                m_results.insert(make_pair(temp_str, new vector<string>));
+            m_results[temp_str].push_back(str);
+        }
+        return new vector<vector<string>>;
+    }
 
 };
+typedef void(*Fun)(void);
+void show(){
+    cout << "fuck u" << endl;
+}
 
 int main(int argc, char *argv[])
 {
-    Solution solution;
-//    vector<vector<int>> a = {{1,2,3},{4,5,6},{7,8,9}};
-//    solution.rotate(a);
-//    for(auto ele:a){
-//        for(auto e:ele){
-//            cout << e;
-//        }
-//        cout << endl;
-//    }
-//    cout << "solution start" << endl;
-//    vector<int> nums = {1,2,2,5};
-//    vector<vector<int>> b;
-//    b=solution.combinationSum2(nums,8);
-//    for(auto ele:b){
-//        for(auto e:ele){
-//            cout << e << " ";
-//        }
-//        cout << endl;
-//    }
+//    Test b;
 
-    string s = "aab";
-    vector<vector<string>> s2;
-    s2 = solution.partition(s);
-    for(auto ele:s2){
-        for(auto e:ele)
-            cout << e << " ";
-        cout << endl;
-    }
-    cout << solution.is_plindrome_substr(s, 0, s.size()-1);
+//    Fun pFun = NULL;
+
+//    cout << "虚函数表地址：" << (long*)(&b) << endl;
+//    cout << "虚函数表 — 第一个函数地址：" << (long*)*(long*)(&b) << endl;
+
+//    // Invoke the first virtual function
+//    pFun = (Fun)*((long*)*(long*)(&b));
+//    pFun();
+
+
     return 0;
  }
