@@ -199,6 +199,7 @@ public:
     **********************************************************/
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
         map<string, vector<string>> m_results;
+        vector<vector<string>> results;
         for(auto str : strs){
             vector<char> copy_str(str.size());
             string temp_str;
@@ -206,10 +207,14 @@ public:
             sort(copy_str.begin(), copy_str.end());
             temp_str.assign(copy_str.begin(), copy_str.end());
             if(!m_results.count(temp_str))
-                m_results.insert(make_pair(temp_str, new vector<string>));
+                m_results.insert(make_pair(temp_str, vector<string> ()));
             m_results[temp_str].push_back(str);
+            cout << temp_str << endl;
         }
-        return new vector<vector<string>>;
+        for(auto vec : m_results){
+            results.push_back(vec.second);
+        }
+        return results;
     }
 
 };
@@ -220,6 +225,10 @@ void show(){
 
 int main(int argc, char *argv[])
 {
+    Solution a;
+    vector<vector<string>> results;
+    vector<string> test_str = {"abc","bca","add","dda","acb"};
+    results = a.groupAnagrams(test_str);
 //    Test b;
 
 //    Fun pFun = NULL;
