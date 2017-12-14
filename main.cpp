@@ -216,6 +216,21 @@ public:
         }
         return results;
     }
+    /*********************************************************
+     *  @no       : 55
+     *  @function : canJump
+     *  @brief    : whether can jump to the end of the vector
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    bool canJump(vector<int>& nums) {
+        int n = nums.size();
+        int reach=0;
+        for(auto i=0;i<n && i<=reach;i++){
+            reach=max(reach, nums[i]+i);
+        }
+        return n<=reach;
+    }
 
 };
 typedef void(*Fun)(void);
@@ -239,7 +254,8 @@ int main(int argc, char *argv[])
 //    // Invoke the first virtual function
 //    pFun = (Fun)*((long*)*(long*)(&b));
 //    pFun();
-
+    vector<int> aa = {1,0,3,4};
+    cout<< a.canJump(aa) << endl;
 
     return 0;
  }
