@@ -226,10 +226,11 @@ public:
     bool canJump(vector<int>& nums) {
         int n = nums.size();
         int reach=0;
-        for(auto i=0;i<n && i<=reach;i++){
+        int i=0;
+        for(i=0;i<n && i<=reach;i++){
             reach=max(reach, nums[i]+i);
         }
-        return n<=reach;
+        return i==n;
     }
 
 };
@@ -254,7 +255,7 @@ int main(int argc, char *argv[])
 //    // Invoke the first virtual function
 //    pFun = (Fun)*((long*)*(long*)(&b));
 //    pFun();
-    vector<int> aa = {1,0,3,4};
+    vector<int> aa = {1,2,3,4};
     cout<< a.canJump(aa) << endl;
 
     return 0;
