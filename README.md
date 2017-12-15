@@ -14,4 +14,5 @@
 |40 |[Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)|C++|Medium|2017-12-06 15:41|
 |131|[Paliundrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/discuss/)|C++|Medium|2017-12-06 23:28|
 |49 |[Group Anagrams](https://leetcode.com/problems/group-anagrams/)|C++|Medium|2017-12-10 23:45|
-|55 |[Jump Game]()|C++|Medium|2017-12-14 23:50|
+|55 |[Jump Game](https://leetcode.com/problems/group-anagrams/jump-game/)|C++|Medium|2017-12-14 23:50|
+|56 |[Merge Interval](https://leetcode.com/problems/group-anagrams/merge-interval/)|C++|Medium|2017-12-15 22:32|
