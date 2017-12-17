@@ -281,7 +281,67 @@ public:
         }
         return res;
     }
+    /*********************************************************
+     *  @no       : 74
+     *  @function : search a 2D matrix
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        const int m = matrix.size();
 
+        const int n = matrix[0].size();
+
+        int m_left = 0;
+        int m_right = m-1;
+        int m_mid;
+        while(m_left <= m_right){
+            m_mid = (m_left + m_right) / 2;
+            if(m_left == m_right && !(matrix[m_mid][0] <=target && target <= matrix[m_mid][n-1])){
+                return false;
+            }
+            if(matrix[m_mid][0] <=target && target <= matrix[m_mid][n-1]){
+                //to find in mid
+                int n_left = 0;
+                int n_right = n-1;
+                int n_mid;
+                while(n_left <= n_right){
+                    n_mid = (n_left + n_right) / 2;
+                    if(n_left==n_right && target != matrix[m_mid][n_mid])
+                        return false;
+                    if(target == matrix[m_mid][n_mid]){
+                        return true;
+                    }
+                    else if(target < matrix[m_mid][n_mid]){
+                        n_right = n_mid-1;
+                    }
+                    else if(target > matrix[m_mid][n_mid]){
+                        n_left = n_mid+1;
+                    }
+                }
+            }
+            else if(target < matrix[m_mid][0]){
+                //update mid in left
+                m_right = m_mid-1;
+            }
+            else if(target > matrix[m_mid][n-1]){
+                //update mid in right
+                m_left = m_mid+1;
+            }
+        }
+    }
+//    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+//        int m = matrix.size();
+//        int n = matrix[0].size();
+//        for(int i=0;i<m;i++)
+//            for(int j=0;j<n;j++){
+//                int temp = matrix[i][j];
+//                if(temp==target)
+//                    return true;
+//            }
+//        return false;
+//    }
 };
 typedef void(*Fun)(void);
 void show(){
@@ -291,9 +351,8 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<string>> results;
-    vector<string> test_str = {"abc","bca","add","dda","acb"};
-    results = a.groupAnagrams(test_str);
+    vector<vector<int>> vec = {{1,2,3},{4,5,6},{7,7,9}};
+    cout << a.searchMatrix(vec, 2) << endl;
 //    Test b;
 
 //    Fun pFun = NULL;
@@ -304,8 +363,7 @@ int main(int argc, char *argv[])
 //    // Invoke the first virtual function
 //    pFun = (Fun)*((long*)*(long*)(&b));
 //    pFun();
-    vector<int> aa = {1,2,3,4};
-    cout<< a.canJump(aa) << endl;
+
 
     return 0;
  }
