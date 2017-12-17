@@ -289,6 +289,10 @@ public:
      *  @output   : out para type
     **********************************************************/
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        if(matrix.empty())
+            return false;
+        if(matrix[0].empty())
+            return false;
         const int m = matrix.size();
 
         const int n = matrix[0].size();
@@ -329,6 +333,7 @@ public:
                 //update mid in right
                 m_left = m_mid+1;
             }
+            return false;
         }
     }
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -351,8 +356,8 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<int>> vec = {{1,2,3},{4,5,6},{7,7,9}};
-    cout << a.searchMatrix(vec, 2) << endl;
+    vector<vector<int>> vec = {{1},{3}};
+    cout << a.searchMatrix(vec, 3) << endl;
 //    Test b;
 
 //    Fun pFun = NULL;
