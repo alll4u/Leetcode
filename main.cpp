@@ -10,6 +10,8 @@
 #include <set>
 #include <map>
 #include <test.h>
+#include <math.h>
+
 using namespace std;
 class Solution{
 public:
@@ -336,6 +338,65 @@ public:
             return false;
         }
     }
+    /*********************************************************
+     *  @no       : xx
+     *  @time     : 12.20
+     *  @function : 水仙花数
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    vector<int> shuixianhua(int n){
+        vector<int> results;
+        for(int i=1,temp,remainder,sum=0;i<n;i++){
+            sum=0;
+            remainder=i%10;
+            sum+=remainder*remainder*remainder;
+            temp/=10;
+            while(temp>0){
+                remainder=temp%10;
+                sum+=remainder*remainder*remainder;
+                temp/=10;
+            }
+            if(sum==i)
+                results.push_back(i);
+        }
+        for(auto e:results)
+            cout << e << " "<<endl;
+        return results;
+    }
+    /*********************************************************
+     *  @no       : 59
+     *  @time     : 12.20
+     *  @function : spiral matrix
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    vector<vector<int>> generateMatrix(int n) {
+        vector<vector<int>> results(n,vector<int>(n,3));
+        int x=1;
+        for(int i=0;i<ceil(n/2.0);i++){
+            for(int j=i;j<n-i;j++)
+                results[i][j]=x++;
+            for(int j=i+1;j<n-i;j++)
+                results[j][n-1-i]=x++;
+            for(int j=n-2-i;j>=i;j--)
+                results[n-1-i][j]=x++;
+            for(int j=n-2-i;j>i;j--)
+                results[j][i]=x++;
+        }
+        for(auto e:results){
+            for(auto f:e){
+                cout << f << " ";
+            }
+            cout << endl;
+        }
+
+
+        return results;
+    }
+
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
 //        int n = matrix[0].size();
@@ -356,8 +417,11 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<int>> vec = {{1},{3}};
-    cout << a.searchMatrix(vec, 3) << endl;
+
+;
+//    a.generateMatrix(5);
+//    a.generateMatrix(0);
+    a.generateMatrix(3);
 //    Test b;
 
 //    Fun pFun = NULL;
