@@ -396,7 +396,40 @@ public:
 
         return results;
     }
+    /*********************************************************
+     *  @no       : 575
+     *  @time     : 12-21
+     *  @function : Distrbute candies
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    int distributeCandies(vector<int>& candies) {
+        candies.sort(candies.begin(), candies.end());
+        map<int, int> candy;
+        int amount;
+        for(auto e: candies){
+            iamount++;
+            map[e]++;
+        }
 
+    }
+    /*********************************************************
+     *  @no       : 575
+     *  @time     : 2017-12-22
+     *  @function : Distribute Candies
+     *  @brief    : An EZ Problem; BORING!!
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    int distributeCandies(vector<int>& candies) {
+        // sort(candies.begin(), candies.end());
+        set<int> candy;
+        for(auto e:candies){
+            candy.insert(e);
+        }
+        return candies.size()/2>candy.size() ? candy.size() : candies.size()/2;
+    }
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
 //        int n = matrix[0].size();
