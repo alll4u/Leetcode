@@ -20,3 +20,4 @@
 |74 |||
 |59 |[Spiral Matrix II](https://leetcode.com/problems/spiral-matrix-ii/)|C++|Medium|2017-12-20 11:07|
 |575|[Distribute Candies](https://leetcode.com/problems/distribute-candies/)|C++|Medium|2017-12-22 22:06|
+|73 |[Set Matrix Zeros](https://leetcode.com/problems/set-matrix-zeroes/discuss/)|C++|Medium|2017-12-27 18:14|

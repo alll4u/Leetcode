@@ -404,16 +404,16 @@ public:
      *  @input    : in  para type
      *  @output   : out para type
     **********************************************************/
-    int distributeCandies(vector<int>& candies) {
-        candies.sort(candies.begin(), candies.end());
-        map<int, int> candy;
-        int amount;
-        for(auto e: candies){
-            iamount++;
-            map[e]++;
-        }
+//    int distributeCandies(vector<int>& candies) {
+//        candies.sort(candies.begin(), candies.end());
+//        map<int, int> candy;
+//        int amount;
+//        for(auto e: candies){
+//            iamount++;
+//            map[e]++;
+//        }
 
-    }
+//    }
     /*********************************************************
      *  @no       : 575
      *  @time     : 2017-12-22
@@ -430,6 +430,77 @@ public:
         }
         return candies.size()/2>candy.size() ? candy.size() : candies.size()/2;
     }
+    /*********************************************************
+     *  @no       : 73
+     *  @time     : 12-27
+     *  @function : Set Matrix Zeroes
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    void setZeroes(vector<vector<int>>& matrix) {
+        set<int> row;
+        set<int> column;
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[0].size();j++){
+                if(matrix[i][j] == 0){
+                    row.insert(i);
+                    column.insert(j);
+                }
+            }
+        }
+        for(auto e:row){
+            for(int i=0;i<matrix.size();i++){
+                if(e==i){
+                    for(int j=0;j<matrix[0].size();j++)
+                        matrix[i][j]=0;
+                }
+            }
+        }
+        for(auto e:column)
+            for(int i=0;i<matrix.size();i++)
+                for(int j=0;j<matrix[0].size();j++)
+                    if(e==j)
+                        matrix[i][j]=0;
+
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[0].size();j++){
+                cout << matrix[i][j];
+            }
+            cout << endl;
+        }
+
+    }
+    void setZeroes2(vector<vector<int>>& matrix){
+        int row = matrix.size();
+        int column = matrix[0].size();
+        int col0 = 1;
+        for(int i=0;i<row;i++){
+            if(matrix[i][0]==0)col0=0;
+            for(int j=1;j<column;j++){
+                if(matrix[i][j]==0){
+                    matrix[0][j]=0;
+                    matrix[i][0]=0;
+                }
+            }
+        }
+        for(int i=row-1;i>=0;i--){
+            for(int j=column-1;j>0;j--){
+                if(matrix[0][j]==0 || matrix[i][0]==0){
+                    matrix[i][j]=0;
+                }
+            }
+            if(col0==0)matrix[i][0]=0;
+        }
+        for(int i=0;i<matrix.size();i++){
+            for(int j=0;j<matrix[0].size();j++){
+                cout << matrix[i][j];
+            }
+            cout << endl;
+        }
+
+    }
+
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
 //        int n = matrix[0].size();
@@ -450,22 +521,8 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-
-;
-//    a.generateMatrix(5);
-//    a.generateMatrix(0);
-    a.generateMatrix(3);
-//    Test b;
-
-//    Fun pFun = NULL;
-
-//    cout << "虚函数表地址：" << (long*)(&b) << endl;
-//    cout << "虚函数表 — 第一个函数地址：" << (long*)*(long*)(&b) << endl;
-
-//    // Invoke the first virtual function
-//    pFun = (Fun)*((long*)*(long*)(&b));
-//    pFun();
-
+    vector<vector<int>> b = {{1,2,3},{0,1,2},{1,2,0}};
+    a.setZeroes2(b);
 
     return 0;
  }
