@@ -500,6 +500,101 @@ public:
         }
 
     }
+    /*********************************************************
+     *  @no       : 79
+     *  @time     : 2018-01-03
+     *  @function : Word Search
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    bool exist(vector<vector<char>>& board, string word) {
+        vector<vector<bool>> flag(board.size(), vector<bool>(board[0].size(), false));
+        vector<vector<int>> results = find_ch(board, flag, word[0]);
+
+        for(int i=1;i<word.size();i++){
+            vector<vector<int>> sum;
+            for(int j=0;j<results.size();j++){
+                vector<vector<int>> temp = find_next(board, flag, results[j], word[i]);
+                sum.insert(sum.end(), temp.begin(), temp.end());
+            }
+            if(!sum.empty())
+                results = sum;
+            else
+                return false;
+        }
+        return true;
+
+    }
+    vector<vector<int>> find_ch(vector<vector<char>> &board, vector<vector<bool>> &flag, char target){
+        vector<vector<int>> results;
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[0].size();j++){
+                if(board[i][j]==target){
+                    results.push_back({i, j});
+                    flag[i][j]=true;
+                }
+            }
+        }
+        return results;
+    }
+//    vector<vector<int>> find_ch_direct(vector<vector<char>> &board, vector<vector<bool>>& flag,char target){
+//        vector<vector<int>> results;
+//        for(int i=0;i<board.size();i++){
+//            for(int j=0;j<board[0].size();j++){
+//                if(board[i][j]==target && !flag[i][j]){
+//                    flag[i][j]=true;
+//                    results.push_back({i, j});
+//                }
+//            }
+//        }
+//        return results;
+//    }
+    vector<vector<int>> find_next(vector<vector<char>> &board,
+                                  vector<vector<bool>> &flag,
+                                  vector<int> current_pos,
+                                  char target){
+        int m = board.size();
+        int n = board[0].size();
+        int x=current_pos[0];
+        int y=current_pos[1];
+        vector<vector<int>> results;
+        //向上
+        x-=1;
+        if(x>=0&&x<m && y>=0&&y<n){
+            if(board[x][y]==target && !flag[x][y]){
+                results.push_back({x, y});
+                flag[x][y]=true;
+            }
+        }
+        //向下
+        x+=2;
+        if(x>=0&&x<m && y>=0&&y<n){
+            if(board[x][y]==target && !flag[x][y]){
+                results.push_back({x, y});
+                flag[x][y]=true;
+            }
+        }
+        //向左
+        x-=1;
+        y-=1;
+        if(x>=0&&x<m && y>=0&&y<n){
+            if(board[x][y]==target && !flag[x][y]){
+                results.push_back({x, y});
+                flag[x][y]=true;
+            }
+        }
+        //向右
+        y+=2;
+        if(x>=0&&x<m && y>=0&&y<n){
+            if(board[x][y]==target && !flag[x][y]){
+                results.push_back({x, y});
+                flag[x][y]=true;
+            }
+        }
+        return results;
+    }
+
 
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
@@ -521,8 +616,8 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<int>> b = {{1,2,3},{0,1,2},{1,2,0}};
-    a.setZeroes2(b);
+    vector<vector<char>> b = {{'a','b','c','e'},{'s','f','c','s'},{'a','d','e','e'}};
+    cout << a.exist(b, "abcb");
 
     return 0;
  }
