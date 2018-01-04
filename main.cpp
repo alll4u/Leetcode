@@ -508,10 +508,11 @@ public:
      *  @input    : in  para type
      *  @output   : out para type
     **********************************************************/
-    bool exist(vector<vector<char>>& board, string word) {
+    bool exist2(vector<vector<char>>& board, string word) {
         vector<vector<bool>> flag(board.size(), vector<bool>(board[0].size(), false));
         vector<vector<int>> results = find_ch(board, flag, word[0]);
-
+        if(results.empty())
+            return false;
         for(int i=1;i<word.size();i++){
             vector<vector<int>> sum;
             for(int j=0;j<results.size();j++){
@@ -594,7 +595,52 @@ public:
         }
         return results;
     }
+    /*********************************************************
+     *  @no       : 79
+     *  @time     : 2018-01-04
+     *  @function : word search
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    bool exist(vector<vector<char>>& board, string word) {
 
+        int m = board.size();
+        int n = board[0].size();
+        vector<vector<bool>> flag(m, vector<bool>(n, false));
+        for(int x=0;x<m;x++)
+            for(int y=0;y<n;y++){
+//                if(board[x][y]==word[0]){
+//                    flag[x][y]=true;
+                    if(dfs(board, flag, x, y, 0, word)){
+                        cout << "true" << endl;
+                        return true;
+                    }
+//                }
+
+            }
+        return false;
+    }
+    bool dfs(vector<vector<char>>& board, vector<vector<bool>>& flag,
+             int x, int y, int idx, string word){
+        int m = board.size();
+        int n = board[0].size();
+        if(idx==word.size())
+            return true;
+        if(x<0 || x>=m || y<0 || y>=n || board[x][y]!=word[idx] || flag[x][y]!=false)
+            return false;
+        flag[x][y]=true;
+        if(dfs(board, flag, x-1, y, idx+1, word)
+                || dfs(board, flag, x, y-1, idx+1, word)
+                || dfs(board, flag, x, y+1, idx+1, word)
+                || dfs(board, flag, x+1, y, idx+1, word))
+            return true;
+        else{
+            flag[x][y]=false;
+            return false;
+        }
+
+    }
 
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
@@ -616,8 +662,8 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<char>> b = {{'a','b','c','e'},{'s','f','c','s'},{'a','d','e','e'}};
-    cout << a.exist(b, "abcb");
+    vector<vector<char>> b = {{'c','a','a'},{'a','a','a'},{'b','c','d'}};
+    cout << a.exist(b, "aab");
 
     return 0;
  }
