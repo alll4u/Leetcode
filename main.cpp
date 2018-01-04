@@ -11,6 +11,7 @@
 #include <map>
 #include <test.h>
 #include <math.h>
+#include <time.h>
 
 using namespace std;
 class Solution{
@@ -610,17 +611,15 @@ public:
         vector<vector<bool>> flag(m, vector<bool>(n, false));
         for(int x=0;x<m;x++)
             for(int y=0;y<n;y++){
-//                if(board[x][y]==word[0]){
-//                    flag[x][y]=true;
                     if(dfs(board, flag, x, y, 0, word)){
                         cout << "true" << endl;
                         return true;
                     }
-//                }
 
             }
         return false;
     }
+    //use Recursive dfs
     bool dfs(vector<vector<char>>& board, vector<vector<bool>>& flag,
              int x, int y, int idx, string word){
         int m = board.size();
@@ -639,7 +638,36 @@ public:
             flag[x][y]=false;
             return false;
         }
+    }
+    /*********************************************************
+     *  @no       : combination numbers
+     *  @time     : time
+     *  @function : name
+     *  @brief    : desription
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    vector<vector<int>> combinationKinds(vector<int>& candidates, int target){
+        vector<vector<int>> result;
+        vector<int> local;
+        sort(candidates.begin(), candidates.end());
+        addCombination(result, local, candidates, 0, target);
+        return result;
 
+    }
+    void addCombination(vector<vector<int>> &result, vector<int> &local,
+                        vector<int> &nums, int begin, int target){
+        if(local.size()==target){
+            result.push_back(local);
+            return;
+        }
+        else{
+            for(int i=begin; i<nums.size(); i++){
+                local.push_back(nums[i]);
+                addCombination(result, local, nums, i+1, target);
+                local.pop_back();
+            }
+        }
     }
 
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
@@ -662,8 +690,20 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<vector<char>> b = {{'c','a','a'},{'a','a','a'},{'b','c','d'}};
-    cout << a.exist(b, "aab");
-
+    vector<int> b ;
+    for(int i=0;i<30;i++)
+        b.push_back(i);
+    vector<vector<int>> results;
+    int target = 14;
+    clock_t cstart,cends;
+    cstart = clock();
+    results = a.combinationKinds(b, target);
+    cends = clock();
+    cout << "duration:"<<cends-cstart<<endl;
+//    for(auto ele:results){
+//        for(auto e:ele)
+//            cout << e;
+//        cout << endl;
+//    }
     return 0;
  }
