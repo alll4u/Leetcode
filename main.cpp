@@ -696,10 +696,16 @@ int main(int argc, char *argv[])
     vector<vector<int>> results;
     int target = 14;
     clock_t cstart,cends;
+    time_t start, ends;
     cstart = clock();
+    start=time(NULL);
     results = a.combinationKinds(b, target);
     cends = clock();
-    cout << "duration:"<<cends-cstart<<endl;
+    ends=time(NULL);
+
+    cout << "时间差：" << difftime(ends,start) << endl;
+    cout << "Clock时间差：" << cends-cstart << endl;
+
 //    for(auto ele:results){
 //        for(auto e:ele)
 //            cout << e;
