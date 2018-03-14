@@ -11,11 +11,13 @@
 #include <map>
 #include <test.h>
 #include <math.h>
+#include <stack>
 #include <time.h>
 
 using namespace std;
 class Solution{
 public:
+    #ifdef ALLTEST
     //48. Rotate Image 2017-12-4 22:54
     void rotate(vector<vector<int>>& matrix){
         reverse(matrix.begin(), matrix.end());
@@ -669,6 +671,45 @@ public:
             }
         }
     }
+#endif
+    /*********************************************************
+     *  @no       : 32
+     *  @time     : 2018-03-12
+     *  @function : Longest Valid Parentheses
+     *  @brief    : stack or dp
+     *  @input    : in  para type
+     *  @output   : out para type
+    **********************************************************/
+    //stack method
+    int longestValidParentheses(string s){
+        stack<int> stk;
+        int result=0;
+        for(int i=0;i<stk.size();i++){
+            if(s[i]=='(')
+                stk.push(i);
+            else if(s[i]==')' && !stk.empty() && stk.top()=='(')
+                stk.pop();
+            else{
+                stk.push(i);
+            }
+        }
+        //遍历将不能置换的替换为'-'
+        while (!stk.empty()) {
+            s[stk.top()]='-';
+        }
+        //计算两个'-'间的最大值
+        if(stk.empty())
+            return s.size();
+        s.push_back('-');
+        int prev=0;
+        for(int i=0;i<s.size();i++){
+            if(s[i]=='-'){
+                result = (i-prev)>result?(i-prev):result;
+                prev = i;
+            }
+        }
+        return result;
+    }
 
 //    bool searchMatrix(vector<vector<int>>& matrix, int target) {
 //        int m = matrix.size();
@@ -690,26 +731,23 @@ void show(){
 int main(int argc, char *argv[])
 {
     Solution a;
-    vector<int> b ;
-    for(int i=0;i<30;i++)
-        b.push_back(i);
-    vector<vector<int>> results;
-    int target = 14;
-    clock_t cstart,cends;
-    time_t start, ends;
-    cstart = clock();
-    start=time(NULL);
-    results = a.combinationKinds(b, target);
-    cends = clock();
-    ends=time(NULL);
+    string s = ")()())";
+    stack<int> s_i;
+    cout << a.longestValidParentheses(s);
+//    for(int i=0;i<3;i++)
+//        b.push_back(i);
+//    vector<vector<int>> results;
+//    int target = 14;
+//    clock_t cstart,cends;
+//    time_t start, ends;
+//    cstart = clock();
+//    start=time(NULL);
+//    results = a.combinationKinds(b, target);
+//    cends = clock();
+//    ends=time(NULL);
 
-    cout << "时间差：" << difftime(ends,start) << endl;
-    cout << "Clock时间差：" << cends-cstart << endl;
+//    cout << "时间差：" << difftime(ends,start) << endl;
+//    cout << "Clock时间差：" << cends-cstart << endl;
 
-//    for(auto ele:results){
-//        for(auto e:ele)
-//            cout << e;
-//        cout << endl;
-//    }
     return 0;
  }
